@@ -41,11 +41,11 @@ esac
 
 if [ ! -e $ROOTFS_DIR/.installed ]; then
   mkdir $ROOTFS_DIR/usr/local/bin -p
-  wget --tries=$max_retries --timeout=$timeout --no-hsts -O $ROOTFS_DIR/usr/local/bin/proot "https://raw.githubusercontent.com/tsathis/fr/main/proot-${ARCH}"
+  cp "proot-${ARCH}" $ROOTFS_DIR/usr/local/bin/proot 
 
   while [ ! -s "$ROOTFS_DIR/usr/local/bin/proot" ]; do
     rm $ROOTFS_DIR/usr/local/bin/proot -rf
-    wget --tries=$max_retries --timeout=$timeout --no-hsts -O $ROOTFS_DIR/usr/local/bin/proot "https://raw.githubusercontent.com/tsathis/fr/main/proot-${ARCH}"
+   cp "proot-${ARCH}" $ROOTFS_DIR/usr/local/bin/proot 
 
     if [ -s "$ROOTFS_DIR/usr/local/bin/proot" ]; then
       chmod 755 $ROOTFS_DIR/usr/local/bin/proot
